@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barbearia Navalha Ninja</title>
+    <!-- favicon -->
+    <link rel="shortcut icon" href="assets/imagens/favicon-32x32.png" type="imagens/x-icon">
+    <!-- fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&family=Permanent+Marker&display=swap"
+        rel="stylesheet">
+    
+    <style>
+        :root {
+            --preto-principal-body: rgb(8, 8, 8);
+            --preto-secundario-section: rgb(18, 18, 18);
+
+            /* Tons de cinza */
+            --cinza-escuro: rgb(33, 33, 33);
+            --cinza-medio: rgb(80, 80, 80);
+
+            /* Tons de branco */
+            --branco-primario: rgb(245, 245, 245);
+            --branco-secundario: rgb(200, 200, 200);
+
+            /* Tons de vermelho */
+            --vermelho-principal: rgb(181, 31, 36);
+            --vermelho-claro: rgb(201, 45, 50);
+            --vermelho-escuro: rgb(118, 17, 20);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            list-style: none;
+            text-decoration: none;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        a {
+            color: var(--branco-primario);
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--vermelho-claro);
+        }
+
+        body {
+            background-color: var(--preto-principal-body);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            color: var(--branco-primario);
+        }
+
+        p {
+            color: var(--branco-secundario);
+            line-height: 1.6;
+        }
+
+        span {
+            color: var(--vermelho-principal);
+        }
+
+        /* ===== HEADER / NAVEGAÇÃO ===== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(8, 8, 8, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 4.5rem;
+            border-bottom: 1px solid rgba(181, 31, 36, 0.3);
+        }
+
+        .logo {
+            width: 4rem;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        nav ul li a {
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            position: relative;
+            padding-bottom: 4px;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--vermelho-principal);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* ===== BOTÕES ===== */
+        button {
+            background-color: var(--vermelho-claro);
+            color: var(--branco-primario);
+            padding: 0.6rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        button:hover {
+            background-color: var(--vermelho-escuro);
+            transform: scale(1.05);
+            box-shadow: 0 4px 20px rgba(181, 31, 36, 0.4);
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        #btn-agendar {
+            padding: 0.6rem 1.8rem;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        /* ===== BOTÃO FLUTUANTE MOBILE ===== */
+        .btn-flutuante {
+            display: none;
+        }
+
+        /* ===== MAIN / PRINCIPAL ===== */
+        .principal {
+            margin-top: 4.5rem;
+            background-image: url(./assets/imagens/ninja-cortando.jpeg);
+            background-size: cover;
+            background-position: center top;
+            background-repeat: no-repeat;
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        .principal::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to right, rgba(8, 8, 8, 0.85) 40%, transparent 100%);
+            z-index: 1;
+        }
+
+        .container-principal {
+            position: relative;
+            z-index: 2;
+            padding: 2rem 5%;
+            max-width: 650px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .container-principal h1 {
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            line-height: 1.1;
+            margin-bottom: 1.2rem;
+        }
+
+        .container-principal p {
+            font-size: 1.05rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .container-principal button {
+            margin-top: 2rem;
+            padding: 0.8rem 2.5rem;
+            font-size: 1rem;
+        }
+
+        .container-principal button img {
+            width: 1.2rem;
+        }
+
+        /* ===== CARDS ===== */
+        .cards {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            padding: 2rem 5%;
+            max-width: 1300px;
+            margin: 0 auto;
+            width: 100%;
+            margin-top: 2rem;
+        }
+
+        .cards>div {
+            background: rgba(18, 18, 18, 0.85);
+            backdrop-filter: blur(8px);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s ease;
+            text-align: center;
+        }
+
+        .cards>div:hover {
+            transform: translateY(-8px);
+            border-color: var(--vermelho-principal);
+            box-shadow: 0 8px 30px rgba(181, 31, 36, 0.15);
+        }
+
+        .cards img {
+            width: 3.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .cards h2 {
+            font-size: 1rem;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .cards p {
+            font-size: 0.85rem;
+            margin-bottom: 0.1rem;
+        }
+
+        /* ===== SERVIÇOS ===== */
+        #servicos {
+            background-image: url(./assets/imagens/sessao-servicos.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            width: 100%;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            padding: 4rem 5%;
+            gap: 4rem;
+            flex-wrap: wrap;
+            position: relative;
+        }
+
+        #servicos::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(8, 8, 8, 0.7);
+            z-index: 1;
+        }
+
+        .text-servicos {
+            position: relative;
+            z-index: 2;
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .text-servicos h1 {
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            line-height: 1.2;
+        }
+
+        .list-servicos {
+            position: relative;
+            z-index: 2;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .itens-barber {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .itens-barber li {
+            color: var(--branco-secundario);
+            font-size: 1.1rem;
+            font-weight: 500;
+            padding-left: 1.5rem;
+            border-left: 3px solid var(--vermelho-principal);
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .itens-barber li:hover {
+            color: var(--branco-primario);
+            padding-left: 2rem;
+            border-left-width: 4px;
+        }
+
+        /* ===== TRABALHOS / GALERIA ===== */
+        .trabalhos {
+            padding: 4rem 5%;
+            background: var(--preto-secundario-section);
+        }
+
+        .text-trabalhos {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .text-trabalhos > div:first-child {
+            flex-shrink: 0;
+            width: auto;
+        }
+
+        .text-trabalhos h1 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            line-height: .7;
+            margin-bottom: 1rem;
+            white-space: pre-line;
+        }
+
+        .text-trabalhos p {
+            font-size: 1.05rem;
+            margin-bottom: 0.5rem;
+            white-space: pre-line;
+        }
+
+        /* ===== SLIDER ===== */
+        #galeria-slider {
+            flex-grow: 1;
+            min-width: 300px;
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            border-radius: 12px;
+            background: var(--preto-principal-body);
+            padding: 1rem 0;
+        }
+
+        /* ===== LIGHTBOX ===== */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            padding: 2rem;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 3rem;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            z-index: 10000;
+        }
+
+        .lightbox-close:hover {
+            transform: scale(1.2);
+            color: var(--vermelho-claro);
+        }
+
+        .slider {
+            display: flex;
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            gap: 10px;
+        }
+
+        .slider img {
+            width: calc(33.333% - 7px);
+            min-width: 250px;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 8px;
+            flex-shrink: 0;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .slider img:hover {
+            transform: scale(1.02);
+        }
+
+        .prev,
+        .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            border: 2px solid var(--vermelho-principal);
+            padding: 0.8rem 1.2rem;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            z-index: 10;
+            transition: all 0.3s ease;
+            width: 3rem;
+            height: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .prev:hover,
+        .next:hover {
+            background: var(--vermelho-principal);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .prev {
+            left: 10px;
+        }
+
+        .next {
+            right: 10px;
+        }
+
+        /* ===== RODAPÉ ===== */
+        .rodape {
+            background: var(--preto-secundario-section);
+            padding: 3rem 5%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .cards-footer {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .cards-footer .img-footer {
+            width: 2.8rem;
+            flex-shrink: 0;
+        }
+
+        .cards-footer h3 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        .cards-footer p {
+            font-size: 0.9rem;
+            margin-bottom: 0.2rem;
+        }
+
+        #redes-sociais {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        #redes-sociais h3 {
+            margin-bottom: 0.3rem;
+        }
+
+        #redes-sociais a {
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        #redes-sociais a:hover {
+            transform: scale(1.1);
+        }
+
+        #redes-sociais img {
+            width: 2.5rem;
+            margin-right: 0.8rem;
+        }
+
+        .cards-footer:last-child h1 {
+            font-size: 1.8rem;
+            line-height: 1.1;
+        }
+
+        .cards-footer:last-child p {
+            font-size: 0.85rem;
+            font-style: italic;
+            margin-top: 0.3rem;
+        }
+
+        /* ===== RESPONSIVIDADE ===== */
+
+        /* Tablet */
+        @media (max-width: 1024px) {
+            header {
+                padding: 0.5rem 1.5rem;
+            }
+
+            nav ul {
+                gap: 1.5rem;
+            }
+
+            .cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            #servicos {
+                flex-direction: column;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .itens-barber {
+                align-items: center;
+            }
+
+            .itens-barber li {
+                padding-left: 0;
+                border-left: none;
+                border-bottom: 2px solid var(--vermelho-principal);
+                padding-bottom: 0.5rem;
+            }
+
+            .itens-barber li:hover {
+                padding-left: 0;
+            }
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            header {
+                padding: 0.5rem 1rem;
+                height: 4rem;
+                flex-wrap: wrap;
+            }
+
+            .logo {
+                width: 3rem;
+            }
+
+            nav ul {
+                gap: 0.8rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            nav ul li a {
+                font-size: 0.7rem;
+                letter-spacing: 0.5px;
+            }
+
+            #btn-agendar {
+                display: none;
+            }
+
+            .btn-flutuante {
+                display: flex;
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                z-index: 999;
+                padding: 0.8rem 1.5rem;
+                border-radius: 50px;
+                font-size: 0.85rem;
+                box-shadow: 0 4px 25px rgba(181, 31, 36, 0.5);
+                animation: pulse 2s infinite;
+            }
+
+            @keyframes pulse {
+                0%,
+                100% {
+                    box-shadow: 0 4px 25px rgba(181, 31, 36, 0.5);
+                }
+                50% {
+                    box-shadow: 0 4px 40px rgba(181, 31, 36, 0.8);
+                }
+            }
+
+            .principal {
+                min-height: 80vh;
+                background-position: 60% top;
+            }
+
+            .principal::before {
+                background: linear-gradient(to top, rgba(8, 8, 8, 0.9) 20%, rgba(8, 8, 8, 0.5) 60%, transparent 100%);
+            }
+
+            .container-principal {
+                padding: 1.5rem;
+                margin-top: 2rem;
+            }
+
+            .container-principal h1 {
+                font-size: 1.8rem;
+            }
+
+            .container-principal p {
+                font-size: 0.9rem;
+            }
+
+            .container-principal button {
+                padding: 0.6rem 1.5rem;
+                font-size: 0.85rem;
+            }
+
+            .cards {
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+                padding: 1.5rem;
+                margin-top: 1rem;
+            }
+
+            .cards>div {
+                padding: 1rem;
+            }
+
+            .cards img {
+                width: 2.5rem;
+            }
+
+            .cards h2 {
+                font-size: 0.8rem;
+            }
+
+            .cards p {
+                font-size: 0.75rem;
+            }
+
+            #servicos {
+                min-height: auto;
+                padding: 3rem 1.5rem;
+            }
+
+            .text-servicos h1 {
+                font-size: 1.8rem;
+            }
+
+            .itens-barber li {
+                font-size: 1rem;
+            }
+
+            .trabalhos {
+                padding: 2rem 1.5rem;
+            }
+
+            .text-trabalhos {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .slider img {
+                width: calc(50% - 5px);
+                min-width: 150px;
+                height: 200px;
+            }
+
+            .prev,
+            .next {
+                width: 2.5rem;
+                height: 2.5rem;
+                font-size: 1rem;
+                padding: 0.4rem;
+            }
+
+            .rodape {
+                grid-template-columns: 1fr 1fr;
+                gap: 1.5rem;
+                padding: 2rem 1.5rem;
+            }
+
+            .cards-footer {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .cards-footer .img-footer {
+                width: 2.2rem;
+            }
+
+            #redes-sociais {
+                align-items: center;
+            }
+
+            .cards-footer:last-child h1 {
+                font-size: 1.4rem;
+            }
+        }
+
+        /* Mobile pequeno */
+        @media (max-width: 480px) {
+            header {
+                height: 3.5rem;
+            }
+
+            .logo {
+                width: 2.5rem;
+            }
+
+            nav ul {
+                gap: 0.5rem;
+            }
+
+            nav ul li a {
+                font-size: 0.6rem;
+            }
+
+            .principal {
+                min-height: 70vh;
+            }
+
+            .container-principal h1 {
+                font-size: 1.5rem;
+            }
+
+            .cards {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.8rem;
+                padding: 1rem;
+            }
+
+            .cards>div {
+                padding: 0.8rem;
+            }
+
+            .cards img {
+                width: 2rem;
+            }
+
+            .cards h2 {
+                font-size: 0.7rem;
+            }
+
+            .cards p {
+                font-size: 0.65rem;
+            }
+
+            .slider img {
+                width: 100%;
+                min-width: 100px;
+                height: 160px;
+            }
+
+            .rodape {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .btn-flutuante {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.75rem;
+                bottom: 15px;
+                right: 15px;
+            }
+        }
+
+        /* Mobile muito pequeno (até 376px) */
+        @media (max-width: 376px) {
+            .rodape {
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+                padding: 2rem 1rem;
+            }
+
+            .cards-footer {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .cards-footer .img-footer {
+                width: 2rem;
+            }
+
+            .cards-footer h3 {
+                font-size: 0.9rem;
+            }
+
+            .cards-footer p {
+                font-size: 0.8rem;
+            }
+
+            #redes-sociais {
+                align-items: center;
+            }
+
+            .cards-footer:last-child h1 {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Scrollbar personalizada */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--preto-principal-body);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--vermelho-principal);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--vermelho-claro);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header>
+        <img class="logo" src="assets/imagens/logo-navalha-ninja.png" alt="Logo Navalha Ninja - Barbearia especializada">
+        <nav>
+            <ul>
+                <li><a href="#home">HOME</a></li>
+                <li><a href="#servicos">SERVIÇOS</a></li>
+                <li><a href="#galeria">GALERIA</a></li>
+                <li><a href="#contatos">CONTATOS</a></li>
+            </ul>
+        </nav>
+        <button id="btn-agendar" type="button">AGENDAR</button>
+    </header>
+
+    <!-- ===== BOTÃO FLUTUANTE MOBILE ===== -->
+    <button class="btn-flutuante" type="button">📱 AGENDAR</button>
+
+    <!-- ===== MAIN / PRINCIPAL ===== -->
+    <main class="principal" id="home">
+        <div class="container-principal">
+            <h1>
+                NÃO É SÓ CORTE <br><span>É PRECISÃO.</span>
+            </h1>
+            <p>Na Navalha Ninja, cada detalhe é uma arte.</p>
+            <p>Mais que um visual, entregamos confiança,</p>
+            <p>estilo e atitude.</p>
+            <button type="button">
+                <img src="assets/imagens/estrela-button.png" alt="Ícone de estrela" width="18">
+                AGENDAR HORÁRIO
+            </button>
+        </div>
+
+        <div class="cards">
+            <div>
+                <img src="assets/imagens/icon-estrela-ninja.png" alt="Ícone estrela ninja - Precisão">
+                <h2>PRECISÃO NINJA</h2>
+                <p>Acabamentos impecáveis</p>
+                <p>com técnica e perfeição.</p>
+            </div>
+            <div>
+                <img src="assets/imagens/icon-navalha.png" alt="Ícone navalha - Tradição">
+                <h2>TRADIÇÃO</h2>
+                <p>O melhor do barbear</p>
+                <p>clássico com um toque</p>
+                <p>moderno.</p>
+            </div>
+            <div>
+                <img src="assets/imagens/icon-ninja.png" alt="Ícone ninja - Estilo e Atitude">
+                <h2>ESTILO & ATITUDE</h2>
+                <p>Cortes que refletem</p>
+                <p>sua personalidade</p>
+                <p>e elevam sua presença.</p>
+            </div>
+            <div>
+                <img src="assets/imagens/icon-templo-ninja.png" alt="Ícone templo ninja - Experiência única">
+                <h2>EXPERIÊNCIA ÚNICA</h2>
+                <p>Ambiente exclusivo para</p>
+                <p>todos que valorizam</p>
+                <p>qualidade e bem-estar.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- ===== SERVIÇOS ===== -->
+    <section id="servicos">
+        <div class="text-servicos">
+            <h1>
+                <span>SERVIÇOS</span><br>
+                DO CLÁSSICO <br> AO EXTREMO.
+            </h1>
+        </div>
+        <div class="list-servicos">
+            <ul class="itens-barber">
+                <li>CORTE MASCULINO</li>
+                <li>BARBA NA NAVALHA</li>
+                <li>SOBRANCELHA</li>
+                <li>LUZES</li>
+                <li>PLATINADO</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ===== GALERIA / TRABALHOS ===== -->
+    <section class="trabalhos" id="galeria">
+        <div class="text-trabalhos">
+            <div>
+                <h1>
+                    <span>NOSSO TRABALHO</span>
+
+RESULTADOS QUE
+
+<span>FALAM POR SI.</span>
+                </h1>
+                <p>Cada corte, uma transformação.
+
+Cada cliente, uma história.</p>
+            </div>
+
+            <div id="galeria-slider">
+                <button class="prev" aria-label="Anterior">❮</button>
+                <div class="slider">
+                    <img src="./assets/imagens/1.jpeg" alt="Corte masculino realizado na Navalha Ninja" loading="lazy">
+                    <img src="./assets/imagens/2.jpeg" alt="Barba na navalha - acabamento perfeito" loading="lazy">
+                    <img src="./assets/imagens/3.jpeg" alt="Degradê moderno - estilo Navalha Ninja" loading="lazy">
+                    <img src="./assets/imagens/4.jpeg" alt="Design de barba exclusivo" loading="lazy">
+                    <img src="./assets/imagens/5.jpeg" alt="Cliente satisfeito com o resultado" loading="lazy">
+                    <img src="./assets/imagens/6.jpeg" alt="Transformação completa - antes e depois" loading="lazy">
+                    <img src="./assets/imagens/7.jpeg" alt="Transformação completa - antes e depois" loading="lazy">
+                    <img src="./assets/imagens/8.jpeg" alt="Transformação completa - antes e depois" loading="lazy">
+                    <img src="./assets/imagens/9.png" alt="Transformação completa - antes e depois" loading="lazy">
+                    <img src="./assets/imagens/10.jpeg" alt="Transformação completa - antes e depois" loading="lazy">
+                    <img src="./assets/imagens/11.jpeg" alt="Transformação completa - antes e depois" loading="lazy">
+                    <img src="./assets/imagens/12.png" alt="Transformação completa - antes e depois" loading="lazy">
+                </div>
+                <button class="next" aria-label="Próximo">❯</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== RODAPÉ ===== -->
+    <footer class="rodape" id="contatos">
+        <div class="cards-footer">
+            <img class="img-footer" src="assets/imagens/localizacao.png" alt="Ícone de localização - alfinete">
+            <div>
+                <h3>ONDE ESTAMOS</h3>
+                <p>Rua Doutor Virgilio Guedes 1613</p>
+                <p>Ponta Grossa - Maceió/AL</p>
+            </div>
+        </div>
+
+        <div class="cards-footer">
+            <img class="img-footer" src="assets/imagens/relogio.png" alt="Ícone de relógio - horário de funcionamento">
+            <div>
+                <h3>HORÁRIO</h3>
+                <p>Seg a Sex: 9h às 17h</p>
+                <p>Sáb: 9h às 14h</p>
+                <p>Dom: Fechado</p>
+            </div>
+        </div>
+
+        <div class="cards-footer">
+            <div id="redes-sociais">
+                <h3>SIGA A NAVALHA</h3>
+                <div>
+                    <a href="https://www.instagram.com/navalhaninja/" target="_blank" rel="noopener noreferrer">
+                        <img src="assets/imagens/instagram.png" alt="Ícone Instagram - Siga a Navalha Ninja">
+                    </a>
+                    <a href="https://wa.me/message/7MRYAPOBCRL5F1" target="_blank" rel="noopener noreferrer">
+                        <img src="assets/imagens/whatsapp.png" alt="Ícone WhatsApp - Entre em contato">
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="cards-footer">
+            <div>
+                <h1>NAVALHA <br> <span>NINJA</span></h1>
+                <p>AFIADA COMO SEMPRE.</p>
+                <p>ÚNICA COMO NUNCA.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== LIGHTBOX ===== -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img id="lightbox-img" src="" alt="Imagem ampliada">
+    </div>
+
+    <!-- ===== SCRIPT ===== -->
+    <script>
+        // ===== SLIDER =====
+        let currentIndex = 0;
+        const slider = document.querySelector('.slider');
+        const images = document.querySelectorAll('.slider img');
+        const totalImages = images.length;
+        let imagesPerView = 3;
+
+        // Função para definir quantas imagens por view
+        function getImagesPerView() {
+            if (window.innerWidth <= 480) return 1;
+            if (window.innerWidth <= 768) return 2;
+            return 3;
+        }
+
+        function updateSlider() {
+            imagesPerView = getImagesPerView();
+            const maxIndex = Math.max(0, totalImages - imagesPerView);
+            
+            if (currentIndex > maxIndex) {
+                currentIndex = maxIndex;
+            }
+            
+            const imageWidth = images[0]?.offsetWidth || 0;
+            const gap = 10;
+            const slideWidth = (imageWidth + gap);
+            
+            slider.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+        }
+
+        function nextSlide() {
+            const maxIndex = Math.max(0, totalImages - getImagesPerView());
+            if (currentIndex < maxIndex) {
+                currentIndex++;
+                updateSlider();
+            }
+        }
+
+        function prevSlide() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateSlider();
+            }
+        }
+
+        // Eventos dos botões
+        document.querySelector('.next')?.addEventListener('click', nextSlide);
+        document.querySelector('.prev')?.addEventListener('click', prevSlide);
+
+        // Suporte a touch (mobile)
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        slider?.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        slider?.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            const diff = touchStartX - touchEndX;
+            if (Math.abs(diff) > 50) {
+                if (diff > 0) {
+                    nextSlide();
+                } else {
+                    prevSlide();
+                }
+            }
+        }, { passive: true });
+
+        // Atualizar ao redimensionar
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(updateSlider, 100);
+        });
+
+        // Inicializar
+        setTimeout(updateSlider, 100);
+
+        // ===== SCROLL SUAVE =====
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href && href.startsWith('#')) {
+                    e.preventDefault();
+                    const targetId = href;
+                    const target = document.querySelector(targetId);
+                    if (target) {
+                        const headerHeight = document.querySelector('header')?.offsetHeight || 70;
+                        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+
+        // ===== LIGHTBOX =====
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxClose = document.querySelector('.lightbox-close');
+
+        // Abrir lightbox ao clicar na imagem
+        images.forEach(img => {
+            img.addEventListener('click', function() {
+                lightbox.classList.add('active');
+                lightboxImg.src = this.src;
+                lightboxImg.alt = this.alt;
+            });
+        });
+
+        // Fechar lightbox ao clicar no botão de fechar
+        lightboxClose.addEventListener('click', function() {
+            lightbox.classList.remove('active');
+        });
+
+        // Fechar lightbox ao clicar fora da imagem
+        lightbox.addEventListener('click', function(e) {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('active');
+            }
+        });
+
+        // Fechar lightbox com a tecla Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                lightbox.classList.remove('active');
+            }
+        });
+
+        // ===== REDIRECIONAR TODOS OS BOTÕES DE AGENDAR PARA O WHATSAPP =====
+        const whatsappUrl = 'https://wa.me/message/7MRYAPOBCRL5F1';
+
+        // Botão do header
+        document.getElementById('btn-agendar')?.addEventListener('click', function() {
+            window.open(whatsappUrl, '_blank');
+        });
+
+        // Botão flutuante
+        document.querySelector('.btn-flutuante')?.addEventListener('click', function() {
+            window.open(whatsappUrl, '_blank');
+        });
+
+        // Botão principal da seção home
+        document.querySelector('.container-principal button')?.addEventListener('click', function() {
+            window.open(whatsappUrl, '_blank');
+        });
+
+        console.log('🚀 Navalha Ninja - Site otimizado com sucesso!');
+    </script>
+
+</body>
+
+</html>
